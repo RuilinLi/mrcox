@@ -1,0 +1,9 @@
+UNAME_S := $(shell uname -s)
+ifeq ($(UNAME_S),Linux)
+	CXXFLAGS=-std=c++11 -g -O3 -fopenmp
+endif
+ifeq ($(UNAME_S),Darwin)
+	CXX=/usr/local/opt/llvm/bin/clang
+	CXXFLAGS=-std=c++11 -g -Wall -O3 -I/usr/local/include -Xpreprocessor -fopenmp
+	LDFLAGS := -L/usr/local/lib -lomp
+endif
