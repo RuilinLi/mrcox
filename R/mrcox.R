@@ -51,3 +51,4 @@ solve_path = function(X_list,
                 tol)
   return(result)
 }
+

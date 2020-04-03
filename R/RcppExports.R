@@ -9,10 +9,12 @@ compute_gradient <- function(X_list, censoring_list, rankmin_list, rankmax_list,
     .Call(`_mrcox_compute_gradient`, X_list, censoring_list, rankmin_list, rankmax_list, B)
 }
 
+#' @export
 compute_residual <- function(X_list, censoring_list, rankmin_list, rankmax_list, B) {
     .Call(`_mrcox_compute_residual`, X_list, censoring_list, rankmin_list, rankmax_list, B)
 }
 
+#' @export
 compute_dual_norm <- function(grad, alpha, tol) {
     .Call(`_mrcox_compute_dual_norm`, grad, alpha, tol)
 }

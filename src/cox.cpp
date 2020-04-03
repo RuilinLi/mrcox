@@ -302,6 +302,7 @@ Eigen::Array<bool, 1, Eigen::Dynamic> is_dual_norm_less_than(MatrixXd grad,
     return result;
 }
 
+//' @export
 // [[Rcpp::export]]
 Rcpp::List compute_residual(const Rcpp::List & X_list,
                 const Rcpp::List & censoring_list,
@@ -313,6 +314,7 @@ Rcpp::List compute_residual(const Rcpp::List & X_list,
     return Rcpp::wrap(prob.Rget_residual(B));
 }
 
+//' @export
 // [[Rcpp::export]]
 VectorXd compute_dual_norm(const MapMatd grad,
                            double alpha,
