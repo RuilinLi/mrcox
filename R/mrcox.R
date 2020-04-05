@@ -29,6 +29,19 @@ solve_path = function(X_list,
   rankmin_list=list()
   rankmax_list=list()
   for (i in 1:K){
+    n = length(y_list[[i]])
+    if(nrow(X_list[[i]]) != n){
+      stop(paste("The number of cases in the event time and the predictors do not match in the",
+                 i, "th response"))
+    }
+    if(ncol(X_list[[i]]) != p){
+      stop(paste("The number of variables in the", i, "th response does not match p"))
+    }
+    if(length(censor_list[[i]] != n)){
+      stop(paste("The number of cases in the status vector and the predictors do not match in the",
+                 i, "th response"))
+    }
+
     o = order(y_list[[i]])
     y_list[[i]] = y_list[[i]][o]
     X_list[[i]] = X_list[[i]][o,]
