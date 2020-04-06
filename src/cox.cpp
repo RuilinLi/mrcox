@@ -160,10 +160,12 @@ void update_parameters(MatrixXd & B, const MatrixXd & grad, const MatrixXd &v, c
     // Apply proximal operator here:
     //Soft-thresholding
     B = ((B.cwiseAbs().rowwise() - lambda_1*step_size*penalty_factor).array().max(0) * B.array().sign()).matrix();
-    // Group soft-thresholding
-    // should be called the pmax of B_col_norm  and lambda_2*step_size
-    B_col_norm.noalias() = B.colwise().norm().cwiseMax(lambda_2*step_size*penalty_factor);
-    B = B * ((B_col_norm.array() - lambda_2*step_size*penalty_factor.array())/(B_col_norm.array())).matrix().asDiagonal();
+    if(lambda_2 > 1e-9){
+        // Group soft-thresholding
+        // should be called the pmax of B_col_norm  and lambda_2*step_size
+        B_col_norm.noalias() = B.colwise().norm().cwiseMax(lambda_2*step_size*penalty_factor);
+        B = B * ((B_col_norm.array() - lambda_2*step_size*penalty_factor.array())/(B_col_norm.array())).matrix().asDiagonal();
+    }
 }
 
 // [[Rcpp::export]]
