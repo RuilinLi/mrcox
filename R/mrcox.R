@@ -37,7 +37,7 @@ solve_path = function(X_list,
     if(ncol(X_list[[i]]) != p){
       stop(paste("The number of variables in the", i, "th response does not match p"))
     }
-    if(length(censor_list[[i]] != n)){
+    if(length(censor_list[[i]]) != n){
       stop(paste("The number of cases in the status vector and the predictors do not match in the",
                  i, "th response"))
     }
